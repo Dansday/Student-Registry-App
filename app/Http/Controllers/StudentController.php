@@ -7,14 +7,11 @@ use App\Models\Student;
 
 class StudentController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $students = Student::all();
-
-        return response()->json([
-            'success' => true,
-            'data' => $students
-        ]);
+        $perPage = $request->input('per_page', 3);
+        $students = Student::paginate($perPage);
+        return response()->json($students, 200);
     }
 
     public function store(Request $request)
