@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Resources\StudentResource;
 use Illuminate\Http\Request;
 use App\Models\Student;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\StudentImport;
 
 class StudentController extends Controller
 {
@@ -126,5 +128,27 @@ class StudentController extends Controller
         
         return StudentResource::collection($students);
     }
-    
+
+    public function import(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|mimes:xls,xlsx,csv'
+        ]);
+
+        $file = $request->file('file');
+
+        if (!$file) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Select file'
+            ], 404);
+        }
+
+        Excel::import(new StudentImport, $file);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Imported successfully'
+        ]);
+    }
 }  
