@@ -2,16 +2,30 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\StudentResource;
 use Illuminate\Http\Request;
 use App\Models\Student;
 
 class StudentController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
-        $perPage = $request->input('per_page', 3);
-        $students = Student::paginate($perPage);
-        return response()->json($students, 200);
+        $students = Student::paginate(3);
+        return StudentResource::collection($students);
+    }
+    
+    public function show($id)
+    {
+        $student = Student::find($id);
+
+        if (!$student) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Student not found'
+            ], 404);
+        }
+
+        return new StudentResource($student);
     }
 
     public function store(Request $request)
@@ -29,29 +43,17 @@ class StudentController extends Controller
             'address' => $request->input('address'),
             'study_course' => $request->input('study_course')
         ]);
+        
         $student->save();
 
+        $name = $student->name;
+        $address = $student->address;
+    
         return response()->json([
             'success' => true,
-            'data' => $student
+            'Name' => $name,
+            'Address' => $address
         ], 201);
-    }
-
-    public function show($id)
-    {
-        $student = Student::find($id);
-
-        if (!$student) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Student not found'
-            ], 404);
-        }
-
-        return response()->json([
-            'success' => true,
-            'data' => $student
-        ]);
     }
 
     public function update(Request $request, $id)
@@ -77,11 +79,15 @@ class StudentController extends Controller
         $student->address = $request->input('address');
         $student->study_course = $request->input('study_course');
         $student->save();
+
+        $name = $student->name;
+        $address = $student->address;
     
         return response()->json([
             'success' => true,
-            'data' => $student
-        ]);
+            'Name' => $name,
+            'Address' => $address
+        ], 201);
     }
     
     public function destroy($id)
@@ -117,11 +123,8 @@ class StudentController extends Controller
                 'message' => 'Student not found',
             ], 404);
         }
-    
-        return response()->json([
-            'success' => true,
-            'data' => $students,
-        ]);
+        
+        return StudentResource::collection($students);
     }
     
 }  
