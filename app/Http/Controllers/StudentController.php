@@ -105,4 +105,26 @@ class StudentController extends Controller
             'message' => 'Student deleted'
         ]);
     }
-}    
+
+    public function search(Request $request)
+    {
+        $query = $request->input('search');
+    
+        $students = Student::where('name', 'LIKE', "%$query%")
+                            ->orWhere('email', 'LIKE', "%$query%")
+                            ->get();
+    
+        if ($students->isEmpty()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Student not found',
+            ], 404);
+        }
+    
+        return response()->json([
+            'success' => true,
+            'data' => $students,
+        ]);
+    }
+    
+}  

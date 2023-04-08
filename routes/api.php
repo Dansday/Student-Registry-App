@@ -13,4 +13,5 @@ Route::middleware('auth:api')->group(function () {
     Route::post('/students', [StudentController::class, 'store']);
     Route::put('/students/{id}', [StudentController::class, 'update']);
     Route::delete('/students/{id}', [StudentController::class, 'destroy']);
+    Route::post('/students', [StudentController::class, 'search']);
 });
