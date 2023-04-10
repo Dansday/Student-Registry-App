@@ -1,8 +1,3 @@
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
 <!-- PROJECT LOGO -->
@@ -14,6 +9,8 @@
 
   <h3 align="center">Student Registry App of South of Australia University by Akbar Yudhanto</h3>
 </div>
+
+
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
@@ -39,9 +36,7 @@ JSON link Answer No.6
 https://api.postman.com/collections/26783339-ec8c8570-33bf-4b29-82b5-d164253ba4da?access_key=PMAT-01GXH5MHSPCGEJBMY15G79A0DJ
 
 Video link
-
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+[![Watch the video](https://img.youtube.com/vi/Vckun0LEn8A/maxresdefault.jpg)](https://youtu.be/Vckun0LEn8A)
 
 
 
@@ -49,7 +44,6 @@ Video link
 
 * [![Laravel][Laravel.com]][Laravel-url]
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
