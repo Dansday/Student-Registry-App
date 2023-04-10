@@ -13,11 +13,10 @@
   </a>
 
   <h3 align="center">Student Registry App of South of Australia University by Akbar Yudhanto</h3>
+</div>
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-
-[![Product Name Screen Shot][product-screenshot]](https://github.com/Dansday/Student-Registry-App)
 
 Technical assessment student registry app of South of Australia University by Akbar Yudhanto
 
